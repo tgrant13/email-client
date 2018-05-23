@@ -1,0 +1,45 @@
+
+?squid:S1148M"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ
+Bsquid:S1148 "#Use a logger to log this exception.(Ç’Çê8±Â€¦·,
+[
+squid:S106b"9Replace this use of System.out or System.err by a logger.(”ÿ¼–ûÿÿÿÿ8¢°’¥·,
+\
+squid:S106Ÿ"9Replace this use of System.out or System.err by a logger.(²¦é‰øÿÿÿÿ8±Â€¦·,
+V
+squid:S106c"9Replace this use of System.out or System.err by a logger.(³¼ÅÓ8±Â€¦·,
+V
+squid:S106"9Replace this use of System.out or System.err by a logger.(ë¯ŠÇ8±Â€¦·,
+V
+squid:S106‰"9Replace this use of System.out or System.err by a logger.(†÷©'8ƒƒû¤·,
+Qsquid:S1141?"5Extract this nested try block into a separate method.(ç£êúÿÿÿÿ
+W
+squid:S106”"9Replace this use of System.out or System.err by a logger.(½¹¦ì8±Â€¦·,
+squid:S1319!"mThe return type of this method should be an interface such as "Map" rather than the implementation "HashMap".(‰›’ùÿÿÿÿ8ÄÒ¨·,
+usquid:S00117]"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(çè„øÿÿÿÿ8±Â€¦·,
+osquid:CommentedOutCodeLine§"<This block of commented-out lines of code should be removed.(İ«ş®ùÿÿÿÿ8±Â€¦·,
+|squid:S2293#"YReplace the type specification in this constructor call with the diamond operator ("<>").(¨¦ãÖÿÿÿÿÿ8Æãâ¥·,
+W
+squid:S106Š"9Replace this use of System.out or System.err by a logger.(€ÃøØ8±Â€¦·,
+ksquid:S00112¤"FDefine and throw a dedicated exception instead of using a generic one.(±„†…üÿÿÿÿ8±Â€¦·,
+Osquid:S11977"8Move the array designator from the variable to the type.(ŞÙÖØ
+osquid:S00117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÉÇ²A8Ğ×Ï¨·,
+P
+squid:S106ˆ"9Replace this use of System.out or System.err by a logger.(Ÿ—º
+O
+squid:S1061"9Replace this use of System.out or System.err by a logger.(Ë¢ê
+osquid:CommentedOutCodeLineÄ"<This block of commented-out lines of code should be removed.(ó²îúÿÿÿÿ8Ò›ƒš¸,
+?squid:S1148R"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ
+[
+squid:S106w"9Replace this use of System.out or System.err by a logger.(ê‹½üÿÿÿÿ8±Â€¦·,
+V
+squid:S106`"9Replace this use of System.out or System.err by a logger.(³¼ÅÓ8±Â€¦·,
+O
+squid:S106G"9Replace this use of System.out or System.err by a logger.(˜êÔõ
+osquid:S00117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÉÇ²A8Ğ×Ï¨·,
+\
+squid:S106Â"9Replace this use of System.out or System.err by a logger.(ÙÅ˜ãùÿÿÿÿ8±Â€¦·,
+esquid:S00112o"FDefine and throw a dedicated exception instead of using a generic one.(…‹ƒ…8±Â€¦·,
+1squid:S1220""Move this file to a named package.
+wsquid:S1450"TRemove the "inbox" field and declare it as a local variable in the relevant methods.(Ğ„¾‚ÿÿÿÿÿ8ÇÂÑ¨·,
+jsquid:CommentedOutCodeLine…"<This block of commented-out lines of code should be removed.(¹×ôı8çæ†š¸,
+:squid:S1148H"#Use a logger to log this exception.(Ç’Çê

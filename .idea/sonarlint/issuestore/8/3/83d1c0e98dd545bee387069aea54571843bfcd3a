@@ -1,0 +1,6 @@
+
+Lsquid:S1604Õ"(Make this anonymous inner class a lambda(ãÁ·¬ıÿÿÿÿ8ÁâÇ¸,
+wsquid:S2293b"YReplace the type specification in this constructor call with the diamond operator ("<>").(… ©…8œî×Ç¸,
+1squid:S1220""Move this file to a named package.
+vsquid:S00117ş"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¬Î­ïşÿÿÿÿ8ÁâÇ¸,
+\squid:S1155u">Use isEmpty() to check whether the collection is empty or not.(°ìñê8ÈöÇ¸,

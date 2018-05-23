@@ -1,0 +1,5 @@
+
+“squid:S1319"pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(ÌðêÎøÿÿÿÿ8ÒŽŒ¢¸,
+1squid:S1220""Move this file to a named package.
+‘squid:S1319"nThe type of the "emails" object should be an interface such as "Map" rather than the implementation "HashMap".(ÌðêÎøÿÿÿÿ8ƒŒŽš¸,
+Fsquid:S1148"#Use a logger to log this exception.(€ÉÔ…ýÿÿÿÿ8õ¼šš¸,
