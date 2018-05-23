@@ -299,7 +299,6 @@ public class EmailClient
 
     emailTextField = new JTextField();
     emailTextField.setPreferredSize(new Dimension(630, 60));
-    emailTextField.setText("tylergrant13@ldschurch.org");
     emailTextField.setFont(font);
     panel.add(emailTextField);
   }
@@ -328,7 +327,6 @@ public class EmailClient
 
     destinationTextField = new JTextField();
     destinationTextField.setPreferredSize(new Dimension(600, 60));
-    destinationTextField.setText("C:\\Users\\tylergrant13\\Desktop\\serviceVolume.csv");
     destinationTextField.setFont(font);
     panel.add(destinationTextField);
   }
