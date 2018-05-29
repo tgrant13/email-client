@@ -10,7 +10,6 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import javax.swing.*;
-import javax.swing.plaf.FontUIResource;
 
 import javafx.util.Pair;
 
@@ -88,7 +87,7 @@ public class EmailClient
 
     // ENSURE THAT THE DESTINATION TEXT FIELD IS A CSV FILE
     if(!writeToCSV.endsWith(".csv"))
-      displayMessage(500, 50, "Destination File must be a .csv file", "ERROR: Invalid Destination File", JOptionPane.ERROR_MESSAGE, true);
+      Popup.displayMessage(500, 50, "Destination File must be a .csv file", "ERROR: Invalid Destination File", JOptionPane.ERROR_MESSAGE, true);
 
     // RETRIEVE THE EMAILS FROM OUTLOOK USING THE USERNAME AND PASSWORD
     OutlookReader outlookReader = new OutlookReader(email, password);
@@ -115,9 +114,9 @@ public class EmailClient
 
     // EXIT
     if(missingServices.size() == 0)
-      displayMessage(500, 50, "Success! All reports imported", "Task Completed", JOptionPane.INFORMATION_MESSAGE, true);
+      Popup.displayMessage(500, 50, "Success! All reports imported", "Task Completed", JOptionPane.INFORMATION_MESSAGE, true);
     else
-      displayMessage(500, 100, "Finished importing. Reports for some services could not be located.", "Check Final Report", JOptionPane.INFORMATION_MESSAGE, true);
+      Popup.displayMessage(500, 100, "Finished importing. Reports for some services could not be located.", "Check Final Report", JOptionPane.INFORMATION_MESSAGE, true);
   }
 
 
@@ -136,7 +135,7 @@ public class EmailClient
     }
     catch (IOException e)
     {
-      displayMessage(300, 300, "Invalid File: Print Writer did not open", "ERROR: PrintWriter Failure", JOptionPane.ERROR_MESSAGE, true);
+      Popup.displayMessage(300, 300, "Invalid File: Print Writer did not open", "ERROR: PrintWriter Failure", JOptionPane.ERROR_MESSAGE, true);
     }
 
     BufferedWriter bw = new BufferedWriter(fw);
@@ -154,7 +153,7 @@ public class EmailClient
     {
       pw.flush();
       pw.close();
-      displayMessage(300, 300, "Missing at least one day of reports", "ERROR: Missing Date", JOptionPane.ERROR_MESSAGE, true);
+      Popup.displayMessage(300, 300, "Missing at least one day of reports", "ERROR: Missing Date", JOptionPane.ERROR_MESSAGE, true);
     }
 
 
@@ -237,7 +236,7 @@ public class EmailClient
         missingServices.add(service);
       }
     }
-    displayMessage(600, 600, missing.toString(), "Missing Service", JOptionPane.ERROR_MESSAGE, false);
+    Popup.displayMessage(600, 600, missing.toString(), "Missing Service", JOptionPane.ERROR_MESSAGE, false);
   }
 
   private static String formatDate(String timeIn)
@@ -327,6 +326,7 @@ public class EmailClient
 
     destinationTextField = new JTextField();
     destinationTextField.setPreferredSize(new Dimension(600, 60));
+
     destinationTextField.setFont(font);
     panel.add(destinationTextField);
   }
@@ -357,18 +357,5 @@ public class EmailClient
     frame.setResizable(false);
     frame.setVisible(true);
     frame.getRootPane().setDefaultButton(goButton);
-  }
-
-  private static void displayMessage(int width, int height, String message, String title, int messageType, boolean exit)
-  {
-    JTextPane jtp = new JTextPane();
-
-    jtp.setPreferredSize(new Dimension(width, height));
-    jtp.setFont(new Font("SansSerif", Font.BOLD, 25));
-    jtp.setText(message);
-
-    UIManager.put("OptionPane.buttonFont", new FontUIResource(new Font("ARIAL", Font.PLAIN, 35)));
-    JOptionPane.showMessageDialog(null, jtp, title, messageType);
-    if(exit) System.exit(0);
   }
 }
