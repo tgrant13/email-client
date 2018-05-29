@@ -1,16 +1,10 @@
-/*
- *  This is the code for read the unread mails from your mail account.
- *  Requirements:
- *      JDK 1.5 and above
- *      Jar:mail.jar
- *
- */
-
 import java.io.*;
 import java.util.*;
 import javax.mail.*;
 import javax.mail.Flags.Flag;
 import javax.mail.search.FlagTerm;
+import javax.swing.JOptionPane;
+
 
 public class OutlookReader
 {
@@ -33,28 +27,30 @@ public class OutlookReader
     public HashMap<String, String> retrieveEmails()
     {
         fileNamesPlusAttachments = new HashMap<String, String>();
-        //Set the mail properties
+
         Properties props = System.getProperties();
         props.setProperty("mail.store.protocol", "imaps");
         try
         {
-            //Create the session and get the store for read the mail.
             Session session = Session.getDefaultInstance(props, null);
             Store store = session.getStore("imaps");
-            store.connect("imap-mail.outlook.com", userEmail, userPassword);
+            if(!store.isConnected())
+            {
+                store.connect("imap-mail.outlook.com", userEmail, userPassword);
+            }
 
 
-            //Mention the folder name which you want to read.
+
             inbox = store.getFolder(folderName);
-            System.out.println("No of Unread Messages : " + inbox.getUnreadMessageCount());
+            System.err.println("No of Unread Messages : " + inbox.getUnreadMessageCount());
 
-            //Open the inbox using store.
+
             inbox.open(Folder.READ_ONLY);
 
-            //Get the messages which is unread in the Inbox
+
             Message messages[] = inbox.search(new FlagTerm(new Flags(Flag.SEEN), false));
 
-            /* Use a suitable FetchProfile    */
+
             FetchProfile fp = new FetchProfile();
             fp.add(FetchProfile.Item.ENVELOPE);
             fp.add(FetchProfile.Item.CONTENT_INFO);
@@ -68,19 +64,23 @@ public class OutlookReader
             }
             catch (Exception ex)
             {
-                System.out.println("Exception arise at the time of read mail");
-                ex.printStackTrace();
+                System.out.println("EXCEPTION");
+                String stackTrace  = StackTraceUtil.buildStackTrace(ex);
+                Popup.displayMessage(300, 300, stackTrace, "Exception", JOptionPane.ERROR_MESSAGE, true);
             }
+
         }
         catch (NoSuchProviderException e)
         {
-            e.printStackTrace();
-            System.exit(1);
+            System.out.println("NOSUCHPROVIDEREXCEPTION EXCEPTION");
+            String stackTrace = StackTraceUtil.buildStackTrace(e);
+            Popup.displayMessage(300, 300, stackTrace, "Exception", JOptionPane.ERROR_MESSAGE, true);
         }
         catch (MessagingException e)
         {
-            e.printStackTrace();
-            System.exit(2);
+            System.out.println("MESSAGING EXCEPTION");
+            String stackTrace = StackTraceUtil.buildStackTrace(e);
+            Popup.displayMessage(300, 300, stackTrace, "Exception", JOptionPane.ERROR_MESSAGE, true);
         }
 
         return fileNamesPlusAttachments;
@@ -119,7 +119,7 @@ public class OutlookReader
                 if(debug) System.out.println("FROM: " + a[j].toString());
             }
         }
-        // TO
+
         if ((a = message.getRecipients(Message.RecipientType.TO)) != null)
         {
             for (int j = 0; j < a.length; j++)
@@ -130,7 +130,7 @@ public class OutlookReader
         String subject = message.getSubject();
         String[] subjectPieces = subject.split(" ");
         String reportName = subjectPieces[2];
-        //System.out.println("\n" + reportName + "\n");
+
         Date receivedDate = message.getReceivedDate();
         String content = message.getContent().toString();
         if(debug)System.out.println("Subject : " + subject);
@@ -157,18 +157,16 @@ public class OutlookReader
         catch (Exception ex)
         {
             System.out.println("EXCEPTION: getContent");
-            ex.printStackTrace();
+            String stackTrace = StackTraceUtil.buildStackTrace(ex);
+            Popup.displayMessage(300, 300, stackTrace, "Exception", JOptionPane.ERROR_MESSAGE, true);
         }
     }
 
     public String getAttachment(Part p) throws Exception
     {
         StringBuilder attachmentContent = new StringBuilder();
-        //System.out.println("IN DUMP PART");
-        // Dump input stream ..
         InputStream is = p.getInputStream();
-        // If "is" is not already buffered, wrap a BufferedInputStream
-        // around it.
+
         if (!(is instanceof BufferedInputStream))
         {
             is = new BufferedInputStream(is);
@@ -193,7 +191,11 @@ public class OutlookReader
             }
             else System.out.write(c);
         }
-        //System.out.println(attachmentContent.toString());
+
         return attachmentContent.toString();
     }
+
+
+
+
 }
