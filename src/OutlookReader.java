@@ -30,6 +30,7 @@ public class OutlookReader
 
         Properties props = System.getProperties();
         props.setProperty("mail.store.protocol", "imaps");
+        props.setProperty("mail.smtp.port", "587");
         try
         {
             Session session = Session.getDefaultInstance(props, null);
@@ -74,13 +75,19 @@ public class OutlookReader
         {
             System.out.println("NOSUCHPROVIDEREXCEPTION EXCEPTION");
             String stackTrace = StackTraceUtil.buildStackTrace(e);
-            Popup.displayMessage(300, 300, stackTrace, "Exception", JOptionPane.ERROR_MESSAGE, true);
+            Popup.displayMessage(300, 300, stackTrace, "Exception: No Such Provider", JOptionPane.ERROR_MESSAGE, true);
+        }
+        catch (AuthenticationFailedException e)
+        {
+            System.out.println("AUTHENTICATION FAILED EXCEPTION");
+            String stackTrace = StackTraceUtil.buildStackTrace(e);
+            Popup.displayMessage(300, 300, stackTrace, "Exception: Authentication Failed" , JOptionPane.ERROR_MESSAGE, true);
         }
         catch (MessagingException e)
         {
             System.out.println("MESSAGING EXCEPTION");
             String stackTrace = StackTraceUtil.buildStackTrace(e);
-            Popup.displayMessage(300, 300, stackTrace, "Exception", JOptionPane.ERROR_MESSAGE, true);
+            Popup.displayMessage(300, 300, stackTrace, "Exception: Messaging (General)", JOptionPane.ERROR_MESSAGE, true);
         }
 
         return fileNamesPlusAttachments;

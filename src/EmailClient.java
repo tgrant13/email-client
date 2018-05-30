@@ -31,36 +31,11 @@ public class EmailClient
   private static String writeToCSV;
   private static int currentSum = 0;
 
-  private static ArrayList<String> services;
-  private static ArrayList<String> daysOfWeek;
-
   // ====================================================================================
   // ======================= ARRAY INITIALIZING FUNCTIONS ===============================
   // ====================================================================================
 
-  private static void fillServices()
-  {
-    services = new ArrayList<>();
-    services.add("CiscServiceVolume"); services.add("CascServiceVolume"); services.add("WatchServiceVolume"); services.add("WatchWorkersVolume");
-    services.add("FtuserServiceVolume"); services.add("LinksServiceVolume"); services.add("DiscussionsServiceVolume"); services.add("pwnServiceVolume");
-    services.add("FtiServiceVolume"); services.add("UnitsServiceVolume"); services.add("DollyServiceVolume");
-  }
 
-  private static void fillDaysOfWeek()
-  {
-    daysOfWeek = new ArrayList<>();
-    daysOfWeek.add("Sun"); daysOfWeek.add("Mon"); daysOfWeek.add("Tue"); daysOfWeek.add("Wed"); daysOfWeek.add("Thu"); daysOfWeek.add("Fri"); daysOfWeek.add("Sat");
-  }
-
-  private static ArrayList<String> fillDates()
-  {
-      ArrayList<String> dates = new ArrayList<>();
-      for(String day : daysOfWeek)
-      {
-        dates.add(getSpecificDayString(day));
-      }
-      return dates;
-  }
 
   // ====================================================================================
   // ================================== MAIN FUNCTION ===================================
@@ -68,8 +43,8 @@ public class EmailClient
 
   public static void main(String[] args)
   {
-    fillServices();
-    fillDaysOfWeek();
+    StaticLists.fillServices();
+    StaticLists.fillDaysOfWeek();
     createView();
   }
 
@@ -94,8 +69,8 @@ public class EmailClient
     emails = outlookReader.retrieveEmails();
 
     // ENSURE THAT ALL OF THE SERVICES WERE IMPORTED
-    missingServices = new ArrayList<String>();
-    if(emails.size() != services.size())
+    missingServices = new ArrayList<>();
+    if(emails.size() != StaticLists.services.size())
       checkMissingServices();
 
     // PARSE THE EMAILS INTO USABLE CSV FILES
@@ -146,7 +121,8 @@ public class EmailClient
   private static void writeToDestinationCSV(PrintWriter pw)
   {
     // GET DATE STRINGS FROM CSV DATES
-    ArrayList<String> dates = fillDates();
+    StaticLists.fillDates(finalEntries);
+    ArrayList<String> dates = StaticLists.dates;
 
     // MAKE SURE ALL DATE STRINGS WERE FOUND
     if(dates.contains("ERROR: date not found"))
@@ -162,11 +138,11 @@ public class EmailClient
     {
       currentSum = 0;
       // WRITE THE DATE STRING IN THE FIRST COLUMN
-      String formattedDate = formatDate(date);
+      String formattedDate = DateUtil.formatDate(date);
       pw.write(formattedDate + ",");
 
       // FOR EACH SERVICE (FILE NAME) WE RETRIEVED
-      for(String service : services)
+      for(String service : StaticLists.services)
       {
         // WRITE THE INFORMATION ABOUT THAT SPECIFIC SERVICE TO THE FILE
         writeSpecificDayInformation(pw, date, service);
@@ -215,7 +191,7 @@ public class EmailClient
     StringBuilder missing = new StringBuilder();
     missing.append("OutlookReader did not locate emails for the following services: \n\n");
 
-    for(String service : services)
+    for(String service : StaticLists.services)
     {
       // CHECK TO SEE THAT THERE IS A FILE THAT REPRESENTS THAT SERVICE
       Boolean serviceParsed = false;
@@ -239,30 +215,8 @@ public class EmailClient
     Popup.displayMessage(600, 600, missing.toString(), "Missing Service", JOptionPane.ERROR_MESSAGE, false);
   }
 
-  private static String formatDate(String timeIn)
-  {
-    String[] splitTime = timeIn.split("  |\\ ");
-    return splitTime[2] + "-" + splitTime[1];
-  }
 
-  private static String getSpecificDayString(String dayOfWeek)
-  {
-    // FOR EACH ENTRY STORED
-    for(FileEntryPair pair : finalEntries)
-    {
-      TimeCountEntry TCE = pair.getValue();
-      String timeString = TCE.getTimeEntry();
 
-      // CHECK TO SEE IF THE DAY IS THE DATE WE ARE LOOKING FOR
-      if(timeString.contains(dayOfWeek))
-      {
-        return timeString;
-      }
-    }
-
-    // IF FOR SOME REASON THE DAY WASN'T FOUND, RETURN AN ERROR STRING
-    return "ERROR: date not found";
-  }
 
 
   // ====================================================================================
