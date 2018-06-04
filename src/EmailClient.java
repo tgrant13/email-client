@@ -62,10 +62,7 @@ public class EmailClient
 
     // WRITE THE RESULTS TO THE OUTPUT FILE
     PWHelper.writeToDestinationCSV(pw, finalEntries, currentSum);
-
-    // FLUSH AND CLOSE THE WRITER
-    pw.flush();
-    pw.close();
+    pw.flush(); pw.close();
 
     // EXIT
     if(missingServices.size() == 0)

@@ -68,7 +68,7 @@ public class PrintWriterHelper
   public static int writeSpecificDayInformation(PrintWriter pw, String dayString, String service, ArrayList<FileEntryPair> finalEntries, int currentSum)
   {
     // FOR EACH FILE & DATA COMBINATION THAT WAS PARSED
-    for(Pair<String, TimeCountEntry> pair : finalEntries)
+    for(FileEntryPair pair : finalEntries)
     {
       // GRAB THE INFORMATION FOR THAT ENTRY
       String fileName = pair.getKey();

@@ -23,9 +23,6 @@ public class GUIFrame
 
   private static Font font;
 
-
-
-
   public static void createView()
   {
     frame = new JFrame();
