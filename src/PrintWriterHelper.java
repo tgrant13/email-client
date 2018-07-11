@@ -5,12 +5,12 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
-import javafx.util.Pair;
-
-public class PrintWriterHelper
+class PrintWriterHelper
 {
+  private PrintWriterHelper(){}
+
   // SET UP A PRINT WRITER TO WRITE TO THE CSV DESTINATION FILE
-  public static PrintWriter initializePrintWriter(String writeToCSV)
+  static PrintWriter initializePrintWriter(String writeToCSV)
   {
     FileWriter fw = null;
     try
@@ -22,12 +22,13 @@ public class PrintWriterHelper
       Popup.displayMessage(300, 300, "Invalid File: Print Writer did not open", "ERROR: PrintWriter Failure", JOptionPane.ERROR_MESSAGE, true);
     }
 
+    assert fw != null;
     BufferedWriter bw = new BufferedWriter(fw);
     return new PrintWriter(bw);
   }
 
   // WRITE THE RESULTS TO THE DESTINATION FILE
-  public static void writeToDestinationCSV(PrintWriter pw, ArrayList<FileEntryPair> finalEntries, int currentSum)
+  static void writeToDestinationCSV(PrintWriter pw, ArrayList<FileEntryPair> finalEntries, int currentSum)
   {
     // GET DATE STRINGS FROM CSV DATES
     StaticLists.fillDates(finalEntries);
@@ -65,7 +66,7 @@ public class PrintWriterHelper
 
   }
 
-  public static int writeSpecificDayInformation(PrintWriter pw, String dayString, String service, ArrayList<FileEntryPair> finalEntries, int currentSum)
+  private static int writeSpecificDayInformation(PrintWriter pw, String dayString, String service, ArrayList<FileEntryPair> finalEntries, int currentSum)
   {
     // FOR EACH FILE & DATA COMBINATION THAT WAS PARSED
     for(FileEntryPair pair : finalEntries)

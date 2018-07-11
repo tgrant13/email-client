@@ -3,9 +3,9 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
-public class CSVParser
+class CSVParser
 {
-  public ArrayList<FileEntryPair> parseCSVs(HashMap<String, String> emails)
+  ArrayList<FileEntryPair> parseCSVs(HashMap<String, String> emails)
   {
     ArrayList<FileEntryPair> finalEntries = new ArrayList<>();
     for(Map.Entry<String, String> pair : emails.entrySet())
@@ -26,7 +26,7 @@ public class CSVParser
       }
       catch(Exception e)
       {
-        e.printStackTrace();
+        /* e.printStackTrace() */
       }
     }
 

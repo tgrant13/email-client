@@ -1,6 +1,18 @@
 
-Lsquid:S1604Õ"(Make this anonymous inner class a lambda(ãÁ·¬ıÿÿÿÿ8ÁâÇ¸,
-wsquid:S2293b"YReplace the type specification in this constructor call with the diamond operator ("<>").(… ©…8œî×Ç¸,
+ssquid:S1450	"URemove the "emails" field and declare it as a local variable in the relevant methods.(—¾‡Ô8¥ó â»,
+ksquid:S3008"NRename this field "GUI" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ä‘¯o8Î„ã»,
+Ssquid:S2209="5Change this instance-reference to a static reference.(ÍÒŠñ8ÑÛÆâ»,
+Fsquid:S2440"(Remove this instantiation of "GUIFrame".(¤ÈÃÜ8ˆÖèá»,
+\squid:S1155D">Use isEmpty() to check whether the collection is empty or not.(°ìñê8ÈöÇ¸,
+Ssquid:S2209)"5Change this instance-reference to a static reference.(â–ßŒ8œÁŠâ»,
+Ssquid:S2209"5Change this instance-reference to a static reference.(ëó­Ñ8ñ°éá»,
+Xsquid:S2209'"5Change this instance-reference to a static reference.(Ó¬şõúÿÿÿÿ8œÁŠâ»,
+Ssquid:S2209@"5Change this instance-reference to a static reference.(ÎÂ“…8ÑÛÆâ»,
+~squid:S1450
+"[Remove the "finalEntries" field and declare it as a local variable in the relevant methods.(â·âƒøÿÿÿÿ8Âõˆâ»,
 1squid:S1220""Move this file to a named package.
-vsquid:S00117ş"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¬Î­ïşÿÿÿÿ8ÁâÇ¸,
-\squid:S1155u">Use isEmpty() to check whether the collection is empty or not.(°ìñê8ÈöÇ¸,
+squid:S1450"^Remove the "missingServices" field and declare it as a local variable in the relevant methods.(ì¿Í™úÿÿÿÿ8¥ó â»,
+wsquid:S1450"YRemove the "writeToCSV" field and declare it as a local variable in the relevant methods.(†¼èè8Âõˆâ»,
+vsquid:S3008"SRename this field "PWHelper" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(°ò™£şÿÿÿÿ8ÑÛÆâ»,
+Tsquid:S2440"1Remove this instantiation of "PrintWriterHelper".(íºû­ıÿÿÿÿ8ÑÛÆâ»,
+Ssquid:S2209&"5Change this instance-reference to a static reference.(ùá¤8›ÁŠâ»,

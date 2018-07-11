@@ -3,7 +3,7 @@ public class TimeCountEntry
   private String timeEntry;
   private String countEntry;
 
-  public TimeCountEntry(String time, String count)
+  TimeCountEntry(String time, String count)
   {
     timeEntry = time;
     countEntry = count;
@@ -14,17 +14,15 @@ public class TimeCountEntry
   @Override
   public String toString()
   {
-    StringBuilder sb = new StringBuilder();
-    sb.append(timeEntry + "," + countEntry + "\n");
-    return sb.toString();
+    return timeEntry + "," + countEntry + "\n";
   }
 
-  public String getTimeEntry()
+  String getTimeEntry()
   {
     return timeEntry;
   }
 
-  public String getCountEntry()
+  String getCountEntry()
   {
     return countEntry;
   }

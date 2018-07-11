@@ -11,7 +11,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.WindowConstants;
 
-public class GUIFrame
+class GUIFrame
 {
   private static JPanel panel;
   private static JButton goButton;
@@ -23,7 +23,9 @@ public class GUIFrame
 
   private static Font font;
 
-  public static void createView()
+  private GUIFrame(){}
+
+  static void createView()
   {
     frame = new JFrame();
     createPanel();
@@ -90,13 +92,9 @@ public class GUIFrame
     goButton = new JButton("GO");
     goButton.setPreferredSize(new Dimension(80, 60));
     goButton.setFont(font);
-    goButton.addActionListener(new ActionListener(){
-      @Override
-      public void actionPerformed(ActionEvent e)
-      {
-        EmailClient.doTheClick();
-        frame.dispose();
-      }
+    goButton.addActionListener(e -> {
+      EmailClient.doTheClick();
+      frame.dispose();
     });
     panel.add(goButton);
   }
@@ -113,17 +111,17 @@ public class GUIFrame
     frame.getRootPane().setDefaultButton(goButton);
   }
 
-  public static JTextField getEmailTextField()
+  static JTextField getEmailTextField()
   {
     return emailTextField;
   }
 
-  public static JPasswordField getPasswordTextField()
+  static JPasswordField getPasswordTextField()
   {
     return passwordTextField;
   }
 
-  public static JTextField getDestinationTextField()
+  static JTextField getDestinationTextField()
   {
     return destinationTextField;
   }
