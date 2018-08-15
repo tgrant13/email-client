@@ -107,7 +107,7 @@ public class OutlookReader
             }
 
 
-            if(FROMaddr != null && FROMaddr[0].toString().contains("Tyler Grant <turboespanol@gmail.com>"))
+            if(FROMaddr != null)
             {
                 printEnvelope(msgs[i]);
             }

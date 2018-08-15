@@ -1,8 +1,6 @@
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -22,8 +20,6 @@ class GUIFrame
   private static JTextField destinationTextField;
 
   private static Font font;
-
-  private GUIFrame(){}
 
   static void createView()
   {
@@ -82,7 +78,6 @@ class GUIFrame
 
     destinationTextField = new JTextField();
     destinationTextField.setPreferredSize(new Dimension(600, 60));
-
     destinationTextField.setFont(font);
     panel.add(destinationTextField);
   }

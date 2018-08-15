@@ -7,8 +7,6 @@ import javax.swing.JOptionPane;
 
 class PrintWriterHelper
 {
-  private PrintWriterHelper(){}
-
   // SET UP A PRINT WRITER TO WRITE TO THE CSV DESTINATION FILE
   static PrintWriter initializePrintWriter(String writeToCSV)
   {
