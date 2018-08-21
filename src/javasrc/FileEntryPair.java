@@ -1,3 +1,5 @@
+package javasrc;
+
 import javafx.util.Pair;
 
 class FileEntryPair extends Pair<String, TimeCountEntry>

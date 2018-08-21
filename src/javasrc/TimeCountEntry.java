@@ -1,3 +1,5 @@
+package javasrc;
+
 public class TimeCountEntry
 {
   private String timeEntry;

@@ -1,3 +1,5 @@
+package javasrc;
+
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -78,6 +80,7 @@ class GUIFrame
 
     destinationTextField = new JTextField();
     destinationTextField.setPreferredSize(new Dimension(600, 60));
+    destinationTextField.setText("C:\\Users\\tylergrant13\\Desktop\\serviceVolume.csv");
     destinationTextField.setFont(font);
     panel.add(destinationTextField);
   }
