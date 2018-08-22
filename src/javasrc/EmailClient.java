@@ -33,7 +33,7 @@ public class EmailClient
 
     // ENSURE THAT THE DESTINATION TEXT FIELD IS A CSV FILE
     if(!writeToCSV.endsWith(".csv"))
-      javasrc.Popup.displayMessage(500, 50, "Destination File must be a .csv file", "ERROR: Invalid Destination File", JOptionPane.ERROR_MESSAGE, true);
+      Popup.displayMessage(500, 50, "Destination File must be a .csv file", "ERROR: Invalid Destination File", JOptionPane.ERROR_MESSAGE, true);
 
     // RETRIEVE THE EMAILS FROM OUTLOOK USING THE USERNAME AND PASSWORD
     OutlookReader outlookReader = new OutlookReader(email, password);
@@ -53,12 +53,12 @@ public class EmailClient
 
     // WRITE THE RESULTS TO THE OUTPUT FILE
     int currentSum = 0;
-    PrintWriterHelper.writeToDestinationCSV(pw, finalEntries, currentSum);
+    PrintWriterHelper.writeToDestinationCSV(pw, finalEntries);
     pw.flush(); pw.close();
 
     // EXIT
     if(missingServices.size() == 0)
-      javasrc.Popup.displayMessage(500, 50, "Success! All reports imported", "Task Completed", JOptionPane.INFORMATION_MESSAGE, true);
+      Popup.displayMessage(500, 50, "Success! All reports imported", "Task Completed", JOptionPane.INFORMATION_MESSAGE, true);
     else
       Popup.displayMessage(500, 100, "Finished importing. Reports for some services could not be located.", "Check Final Report", JOptionPane.INFORMATION_MESSAGE, true);
   }

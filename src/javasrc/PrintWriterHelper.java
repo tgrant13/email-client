@@ -28,7 +28,7 @@ class PrintWriterHelper
   }
 
   // WRITE THE RESULTS TO THE DESTINATION FILE
-  static void writeToDestinationCSV(PrintWriter pw, ArrayList<FileEntryPair> finalEntries, int currentSum)
+  static void writeToDestinationCSV(PrintWriter pw, ArrayList<FileEntryPair> finalEntries)
   {
     // GET DATE STRINGS FROM CSV DATES
     StaticLists.fillDates(finalEntries);
@@ -46,7 +46,7 @@ class PrintWriterHelper
     // FOR EACH DATE STRING
     for(String date : dates)
     {
-      currentSum = 0;
+      int currentSum = 0;
       // WRITE THE DATE STRING IN THE FIRST COLUMN
       String formattedDate = DateUtil.formatDate(date);
       pw.write(formattedDate + ",");

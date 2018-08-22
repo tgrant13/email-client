@@ -8,27 +8,27 @@ import javax.mail.search.FlagTerm;
 import javax.swing.JOptionPane;
 
 
-public class OutlookReader
+class OutlookReader
 {
-    private Folder inbox;
+
     private String folderName;
     private boolean debug;
     private HashMap<String, String> fileNamesPlusAttachments;
     private String userEmail;
     private String userPassword;
 
-    public OutlookReader(String email_in, String password_in)
+    OutlookReader(String emailIn, String passwordIn)
     {
         debug = false;
         fileNamesPlusAttachments = new HashMap<>();
-        userEmail = email_in;
-        userPassword = password_in;
+        userEmail = emailIn;
+        userPassword = passwordIn;
         folderName = "Splunk Reports";
     }
 
-    public HashMap<String, String> retrieveEmails()
+    HashMap<String, String> retrieveEmails()
     {
-        fileNamesPlusAttachments = new HashMap<String, String>();
+        fileNamesPlusAttachments = new HashMap<>();
 
         Properties props = System.getProperties();
         props.setProperty("mail.store.protocol", "imaps");
@@ -43,15 +43,14 @@ public class OutlookReader
             }
 
 
-
-            inbox = store.getFolder(folderName);
+            Folder inbox = store.getFolder(folderName);
             System.err.println("No of Unread Messages : " + inbox.getUnreadMessageCount());
 
 
             inbox.open(Folder.READ_ONLY);
 
 
-            Message messages[] = inbox.search(new FlagTerm(new Flags(Flag.SEEN), false));
+            Message[] messages = inbox.search(new FlagTerm(new Flags(Flag.SEEN), false));
 
 
             FetchProfile fp = new FetchProfile();
@@ -95,45 +94,44 @@ public class OutlookReader
         return fileNamesPlusAttachments;
     }
 
-    public void printAllMessages(Message[] msgs) throws Exception
+    private void printAllMessages(Message[] msgs) throws Exception
     {
-        for (int i = 0; i < msgs.length; i++)
-        {
-            Address[] FROMaddr = msgs[i].getFrom();
-            if(debug && FROMaddr != null)
-            {
+        for (Message msg : msgs) {
+            Address[] fromAddress = msg.getFrom();
+            if (debug && fromAddress != null) {
                 System.out.println("-------------------------------------------------------");
-                String nameAddr = FROMaddr[0].toString();
+                String nameAddr = fromAddress[0].toString();
                 System.out.println("NAME: " + nameAddr);
                 System.out.println("-------------------------------------------------------");
             }
 
 
-            if(FROMaddr != null)
-            {
-                printEnvelope(msgs[i]);
+            if (fromAddress != null) {
+                printEnvelope(msg);
             }
         }
     }
 
     /*  Print the envelope(FromAddress,ReceivedDate,Subject)  */
-    public void printEnvelope(Message message) throws Exception
+    private void printEnvelope(Message message) throws Exception
     {
-        Address[] a;
+        Address[] addresses;
 
-        if ((a = message.getFrom()) != null)
+        if ((addresses = message.getFrom()) != null)
         {
-            for (int j = 0; j < a.length; j++)
-            {
-                if(debug) System.out.println("FROM: " + a[j].toString());
+            for (Address address : addresses) {
+                if (debug) {
+                    System.out.println("FROM: " + address.toString());
+                }
             }
         }
 
-        if ((a = message.getRecipients(Message.RecipientType.TO)) != null)
+        if ((addresses = message.getRecipients(Message.RecipientType.TO)) != null)
         {
-            for (int j = 0; j < a.length; j++)
-            {
-                if(debug) System.out.println("TO: " + a[j].toString());
+            for (Address address : addresses) {
+                if (debug) {
+                    System.out.println("TO: " + address.toString());
+                }
             }
         }
         String subject = message.getSubject();
@@ -149,7 +147,7 @@ public class OutlookReader
 
     }
 
-    public void getContent(String reportName, Message msg)
+    private void getContent(String reportName, Message msg)
     {
         try
         {
@@ -171,7 +169,7 @@ public class OutlookReader
         }
     }
 
-    public String getAttachment(Part p) throws Exception
+    private String getAttachment(Part p) throws Exception
     {
         StringBuilder attachmentContent = new StringBuilder();
         InputStream is = p.getInputStream();

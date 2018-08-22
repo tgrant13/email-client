@@ -2,21 +2,21 @@ package javasrc;
 
 import java.util.ArrayList;
 
-public class DateUtil
+class DateUtil
 {
-  public static String formatDate(String timeIn)
+  static String formatDate(String timeIn)
   {
-    String[] splitTime = timeIn.split("  |\\ ");
+    String[] splitTime = timeIn.split(" {2}| ");
     return splitTime[2] + "-" + splitTime[1];
   }
 
-  public static String getSpecificDayString(ArrayList<FileEntryPair> finalEntries, String dayOfWeek)
+  static String getSpecificDayString(ArrayList<FileEntryPair> finalEntries, String dayOfWeek)
   {
     // FOR EACH ENTRY STORED
     for(FileEntryPair pair : finalEntries)
     {
-      TimeCountEntry TCE = pair.getValue();
-      String timeString = TCE.getTimeEntry();
+      TimeCountEntry timeCountEntry = pair.getValue();
+      String timeString = timeCountEntry.getTimeEntry();
 
       // CHECK TO SEE IF THE DAY IS THE DATE WE ARE LOOKING FOR
       if(timeString.contains(dayOfWeek))
