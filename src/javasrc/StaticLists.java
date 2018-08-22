@@ -2,14 +2,14 @@ package javasrc;
 
 import java.util.ArrayList;
 
-public class StaticLists
+class StaticLists
 {
-  protected static ArrayList<String> services;
-  protected static ArrayList<String> daysOfWeek;
-  protected static ArrayList<String> dates;
+  static ArrayList<String> services;
+  private static ArrayList<String> daysOfWeek;
+  static ArrayList<String> dates;
 
 
-  public static void fillServices()
+  static void fillServices()
   {
     services = new ArrayList<>();
     services.add("CiscServiceVolume"); services.add("CascServiceVolume"); services.add("WatchServiceVolume"); services.add("WatchWorkersVolume");
@@ -17,13 +17,13 @@ public class StaticLists
     services.add("FtiServiceVolume"); services.add("UnitsServiceVolume"); services.add("DollyServiceVolume");
   }
 
-  public static void fillDaysOfWeek()
+  static void fillDaysOfWeek()
   {
     daysOfWeek = new ArrayList<>();
     daysOfWeek.add("Sun"); daysOfWeek.add("Mon"); daysOfWeek.add("Tue"); daysOfWeek.add("Wed"); daysOfWeek.add("Thu"); daysOfWeek.add("Fri"); daysOfWeek.add("Sat");
   }
 
-  public static void fillDates(ArrayList<FileEntryPair> finalEntries)
+  static void fillDates(ArrayList<FileEntryPair> finalEntries)
   {
     dates = new ArrayList<>();
     for(String day : daysOfWeek)

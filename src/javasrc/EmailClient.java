@@ -52,7 +52,6 @@ public class EmailClient
     PrintWriter pw = PrintWriterHelper.initializePrintWriter(writeToCSV);
 
     // WRITE THE RESULTS TO THE OUTPUT FILE
-    int currentSum = 0;
     PrintWriterHelper.writeToDestinationCSV(pw, finalEntries);
     pw.flush(); pw.close();
 

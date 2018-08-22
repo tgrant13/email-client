@@ -7,9 +7,9 @@ import javax.swing.JTextArea;
 import javax.swing.UIManager;
 import javax.swing.plaf.FontUIResource;
 
-public class Popup
+class Popup
 {
-  public static void displayMessage(int width, int height, String message, String title, int messageType, boolean exit)
+  static void displayMessage(int width, int height, String message, String title, int messageType, boolean exit)
   {
 
     JTextArea textArea = new JTextArea(message);
